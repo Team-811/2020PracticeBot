@@ -1,1 +1,1 @@
-2020 Practice Bot Code (Test)
+2020 Practice Bot Code
