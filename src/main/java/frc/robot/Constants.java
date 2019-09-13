@@ -23,6 +23,12 @@ public class Constants
     public static final double strafeTrackScrubFactor = 0.8;
     public static final int ticksPerRotation = 1024;
 
+    // DRIVE WHEEL COEFFICIENTS
+    public static final double TOP_LEFT_COEFFICIENT = 1;
+    public static final double TOP_RIGHT_COEFFICENT = 1;
+    public static final double BOTTOM_RIGHT_COEFFICIENT = 1;
+    public static final double BOTTOM_LEFT_COEFFICIENT = 1;
+
     public static final double robotLength = 0.8763; //With bumpers
     public static final double robotWidth = 0.8636; //With bumpers
 

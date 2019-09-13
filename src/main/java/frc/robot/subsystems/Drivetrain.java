@@ -160,13 +160,12 @@ public class Drivetrain extends Subsystem implements ISubsystem{
       Output driveOutput;
       double correction;
 
-      if(rotation < 0.2 && rotation > -0.2)
+      if(rotation < 0.2 && rotation > -0.2) {
           //when not rotating, compare your current gyro pos to the last time you were rotating to get error
           correction = gyroCorrection();
-        else
+        } else {
           correction = 0;
-
-
+      }
       if(mode == DriveMode.Arcade)
       {
         if(gyro.isConnected())
@@ -182,10 +181,10 @@ public class Drivetrain extends Subsystem implements ISubsystem{
           driveOutput = drivetrain.arcadeMecanumDrive(forward * SpeedScale, rotation * SpeedScale, strafe * SpeedScale);
       }
 
-      topLeftMotor.set(ControlMode.PercentOutput, driveOutput.getTopLeftValue());
-      topRightMotor.set(ControlMode.PercentOutput, driveOutput.getRightValue());
-      bottomLeftMotor.set(ControlMode.PercentOutput, driveOutput.getBottomLeftValue());
-      bottomRightMotor.set(ControlMode.PercentOutput, driveOutput.getBottomRightValue());
+      topLeftMotor.set(ControlMode.PercentOutput, driveOutput.getTopLeftValue() * Constants.TOP_LEFT_COEFFICIENT);
+      topRightMotor.set(ControlMode.PercentOutput, driveOutput.getRightValue() * Constants.TOP_RIGHT_COEFFICENT);
+      bottomLeftMotor.set(ControlMode.PercentOutput, driveOutput.getBottomLeftValue() * Constants.BOTTOM_LEFT_COEFFICIENT);
+      bottomRightMotor.set(ControlMode.PercentOutput, driveOutput.getBottomRightValue() * Constants.BOTTOM_RIGHT_COEFFICIENT);
 
       //neo.set(driveOutput.getLeftValue());
 
