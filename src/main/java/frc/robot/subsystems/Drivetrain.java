@@ -17,13 +17,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 import frc.robot.RobotMap;
 import frc.robot.lib.MecanumDrive;
-import frc.robot.lib.MotionProfiling;
+//import frc.robot.lib.MotionProfiling;
 import frc.robot.lib.Output;
 import frc.robot.lib.PIDController;
 import frc.robot.lib.TalonChecker;
 import frc.robot.lib.UnitConverter;
-import frc.robot.lib.vision.AimingParameters;
-import frc.robot.RobotState;
+//import frc.robot.lib.vision.AimingParameters;
+//import frc.robot.RobotState;
 import jaci.pathfinder.Waypoint;
 import frc.robot.commands.Drivetrain.*;
 
@@ -62,9 +62,9 @@ public class Drivetrain extends Subsystem implements ISubsystem{
   private AHRS gyro;
 
   private MecanumDrive drivetrain;
-  private MotionProfiling motionProfile;
+  //private MotionProfiling motionProfile;
 
-  private RobotState robot_state_;
+  //private RobotState robot_state_;
 
   private PIDController pidDistance;
   private PIDController pidStrafe;
@@ -108,8 +108,7 @@ public class Drivetrain extends Subsystem implements ISubsystem{
 
       //strafeEncoder = new Encoder(RobotMap.DRIVE_STRAFE_ENCODER_ACHANNEL, RobotMap.DRIVE_STRAFE_ENCODER_BCHANNEL);
 
-      robot_state_ = RobotState.getInstance();
-
+      
       configureTalons();
 
       gyro = new AHRS(SerialPort.Port.kMXP);
@@ -119,7 +118,7 @@ public class Drivetrain extends Subsystem implements ISubsystem{
       zeroEncoders();
 
       drivetrain = new MecanumDrive();
-      motionProfile = new MotionProfiling(Constants.maxVelocity, Constants.maxAcceleration, Constants.maxJerk, Constants.wheelbase);
+      
       configurePID();
       
 
@@ -211,63 +210,63 @@ public class Drivetrain extends Subsystem implements ISubsystem{
   }
 
 
-  //Motion Profiling
+  // //Motion Profiling
 
-  public void loadTrajectory(Waypoint[] path, boolean reverse)
-  {
-      motionProfile.loadTrajectory(path, reverse);
-  }
+  // public void loadTrajectory(Waypoint[] path, boolean reverse)
+  // {
+  //     motionProfile.loadTrajectory(path, reverse);
+  // }
 
-  public void followTrajectory(boolean reverse)
-  {
+  // public void followTrajectory(boolean reverse)
+  // {
 
-    Output driveOutput = motionProfile.getNextDriveSignal(reverse, getLeftEncoder(), getRightEncoder(), gyro.getAngle(), false);
+  //   Output driveOutput = motionProfile.getNextDriveSignal(reverse, getLeftEncoder(), getRightEncoder(), gyro.getAngle(), false);
 
-    double velocityLeft = UnitConverter.metersPerSecondToTalonUnits(driveOutput.getLeftValue(), Constants.wheelDiameter, Constants.ticksPerRotation);
-    double velocityRight = UnitConverter.metersPerSecondToTalonUnits(driveOutput.getRightValue(), Constants.wheelDiameter, Constants.ticksPerRotation);
+  //   double velocityLeft = UnitConverter.metersPerSecondToTalonUnits(driveOutput.getLeftValue(), Constants.wheelDiameter, Constants.ticksPerRotation);
+  //   double velocityRight = UnitConverter.metersPerSecondToTalonUnits(driveOutput.getRightValue(), Constants.wheelDiameter, Constants.ticksPerRotation);
 
-    setVelocity(velocityLeft, velocityRight);
-  }
+  //   setVelocity(velocityLeft, velocityRight);
+  // }
 
-  public boolean isPathFinished()
-  {
-      return motionProfile.isFinished();
-  }
+  // public boolean isPathFinished()
+  // {
+  //     return motionProfile.isFinished();
+  // }
 
-  public double percentagePathFinished()
-  {
-      return motionProfile.percentageDone();
-  }
+  // public double percentagePathFinished()
+  // {
+  //     return motionProfile.percentageDone();
+  // }
 
-  public boolean isPathPercentDone(double percentage)
-  {
-      return percentage <= percentagePathFinished();
-  }
+  // public boolean isPathPercentDone(double percentage)
+  // {
+  //     return percentage <= percentagePathFinished();
+  // }
 
-  public void loadTrajectoryPathfinder(Waypoint[] path, boolean reverse)
-  {
-      double leftEncoder = (topLeftMotor.getSelectedSensorPosition() + bottomLeftMotor.getSelectedSensorVelocity()) / 2;
-      double rightEncoder = (topRightMotor.getSelectedSensorPosition() + bottomRightMotor.getSelectedSensorVelocity()) / 2;
-      motionProfile.loadTrajectoryPathfinder(path, reverse, (int)leftEncoder, (int)rightEncoder, getGyroAngle());
-  }
+  // public void loadTrajectoryPathfinder(Waypoint[] path, boolean reverse)
+  // {
+  //     double leftEncoder = (topLeftMotor.getSelectedSensorPosition() + bottomLeftMotor.getSelectedSensorVelocity()) / 2;
+  //     double rightEncoder = (topRightMotor.getSelectedSensorPosition() + bottomRightMotor.getSelectedSensorVelocity()) / 2;
+  //     motionProfile.loadTrajectoryPathfinder(path, reverse, (int)leftEncoder, (int)rightEncoder, getGyroAngle());
+  // }
 
-  public void followTrajectoryPathfinder(boolean reverse)
-  {
-      double leftEncoder = (topLeftMotor.getSelectedSensorPosition() + bottomLeftMotor.getSelectedSensorVelocity()) / 2;
-      double rightEncoder = (topRightMotor.getSelectedSensorPosition() + bottomRightMotor.getSelectedSensorVelocity()) / 2;
+  // public void followTrajectoryPathfinder(boolean reverse)
+  // {
+  //     double leftEncoder = (topLeftMotor.getSelectedSensorPosition() + bottomLeftMotor.getSelectedSensorVelocity()) / 2;
+  //     double rightEncoder = (topRightMotor.getSelectedSensorPosition() + bottomRightMotor.getSelectedSensorVelocity()) / 2;
 
-    Output driveOutput = motionProfile.followTrajectoryPathfinder(reverse, (int)leftEncoder, (int)rightEncoder, gyro.getAngle());
+  //   Output driveOutput = motionProfile.followTrajectoryPathfinder(reverse, (int)leftEncoder, (int)rightEncoder, gyro.getAngle());
 
-    topLeftMotor.set(ControlMode.PercentOutput, driveOutput.getTopLeftValue());
-    topRightMotor.set(ControlMode.PercentOutput, driveOutput.getTopRightValue());
-    bottomLeftMotor.set(ControlMode.PercentOutput, driveOutput.getBottomLeftValue());
-    bottomRightMotor.set(ControlMode.PercentOutput, driveOutput.getBottomRightValue());
-  }
+  //   topLeftMotor.set(ControlMode.PercentOutput, driveOutput.getTopLeftValue());
+  //   topRightMotor.set(ControlMode.PercentOutput, driveOutput.getTopRightValue());
+  //   bottomLeftMotor.set(ControlMode.PercentOutput, driveOutput.getBottomLeftValue());
+  //   bottomRightMotor.set(ControlMode.PercentOutput, driveOutput.getBottomRightValue());
+  // }
 
-  public boolean isPathFinishedPathfinder()
-  {
-      return motionProfile.isPathfinderPathDone();
-  }
+  // public boolean isPathFinishedPathfinder()
+  // {
+  //     return motionProfile.isPathfinderPathDone();
+  // }
 
 
 
@@ -316,16 +315,16 @@ public class Drivetrain extends Subsystem implements ISubsystem{
     return pidDistance.isOnTarget() && pidStrafe.isOnTarget() && pidRotation.isOnTarget();
   }
 
-  public void setUpVisionPID()
-  {
-      AimingParameters target = robot_state_.getAimingParameters();
+  // public void setUpVisionPID()
+  // {
+  //     AimingParameters target = robot_state_.getAimingParameters();
 
-      if(target != null)
-        setPIDGoals(target.getY(), target.getX(), 0); //Assumes drivers rotation is good enough
-      else
-        System.out.println("No targets to track");
+  //     if(target != null)
+  //       setPIDGoals(target.getY(), target.getX(), 0); //Assumes drivers rotation is good enough
+  //     else
+  //       System.out.println("No targets to track");
 
-  }
+  // }
 
 
 

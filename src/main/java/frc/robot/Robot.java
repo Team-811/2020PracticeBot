@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Paths.TestTrajectory;
 import frc.robot.controllers.OI;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.CameraServer;
@@ -27,8 +26,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
  */
 public class Robot extends TimedRobot {
   public static Drivetrain drivetrain = Drivetrain.getInstance();
-  public static RobotMap robotMap = new RobotMap();
-  public static RobotStateEstimator stateEstimator = RobotStateEstimator.getInstance();
+  public static RobotMap robotMap = new RobotMap();  
   public static OI controllers; 
 
 

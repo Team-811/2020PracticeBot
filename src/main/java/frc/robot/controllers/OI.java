@@ -8,7 +8,7 @@
 package frc.robot.controllers;
 
 import frc.robot.commands.Drivetrain.*;
-import frc.robot.Paths.*;
+
 
 
 /**
@@ -53,9 +53,6 @@ public class OI {
 
     driveController.rightBumper.whenPressed(new ToggleDriveMode());
     driveController.leftBumper.whileHeld(new SlowMode());
-    driveController.aButton.whenPressed(new FollowPath(TestTrajectory.testPath, false));
-    driveController.bButton.whenPressed(new GoToVelocity());
-
 
   }
 
