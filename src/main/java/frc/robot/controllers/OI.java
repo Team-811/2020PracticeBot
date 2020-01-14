@@ -9,8 +9,6 @@ package frc.robot.controllers;
 
 import frc.robot.commands.Drivetrain.*;
 
-
-
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -49,13 +47,8 @@ public class OI {
 
   public OI()
   {
-    driveController = new BobXboxController(0, 0.2, 0.2);
-
-    driveController.rightBumper.whenPressed(new ToggleDriveMode());
+    driveController = new BobXboxController(0, 0.2, 0.2);    
     driveController.leftBumper.whileHeld(new SlowMode());
-
-  }
-
-    
+  }    
 
 }

@@ -24,11 +24,9 @@ public class Constants
     public static final int ticksPerRotation = 1024;
 
     // DRIVE WHEEL COEFFICIENTS
-    public static final double TOP_LEFT_COEFFICIENT = 1;
-    public static final double TOP_RIGHT_COEFFICENT = 1;
-    public static final double BOTTOM_RIGHT_COEFFICIENT = 1;
-    public static final double BOTTOM_LEFT_COEFFICIENT = 1;
-
+    public static final double LEFT_COEFFICIENT = 1;
+    public static final double RIGHT_COEFFICENT = 1;
+   
     public static final double robotLength = 0.8763; //With bumpers
     public static final double robotWidth = 0.8636; //With bumpers
 
@@ -45,6 +43,5 @@ public class Constants
     public static double kTrackReportComparatorStablityWeight = 1.0;
     public static double kTrackReportComparatorAgeWeight = 1.0;
 
-    public static final double cameraLatency = 0.2; //TODO
-
+    public static final double cameraLatency = 0.2;
 }

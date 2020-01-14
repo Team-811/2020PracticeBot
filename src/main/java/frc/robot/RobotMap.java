@@ -24,10 +24,8 @@ public class RobotMap {
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
 
-  public static final int DRIVE_TOP_LEFT_MOTOR = 1;
-  public static final int DRIVE_TOP_RIGHT_MOTOR = 2;
-  public static final int DRIVE_BOTTOM_LEFT_MOTOR = 5;
-  public static final int DRIVE_BOTTOM_RIGHT_MOTOR = 6;
-  public static final int DRIVE_NEO = 4;
+  //For CAN bus items, these numbers are the IDs from Phoenix Tuner
+  public static final int DRIVE_LEFT_MOTOR = 1;
+  public static final int DRIVE_RIGHT_MOTOR = 2;  
 
 }
