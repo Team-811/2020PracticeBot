@@ -26,6 +26,8 @@ public class RobotMap {
 
   //For CAN bus items, these numbers are the IDs from Phoenix Tuner
   public static final int DRIVE_LEFT_MOTOR = 1;
-  public static final int DRIVE_RIGHT_MOTOR = 2;  
+  public static final int DRIVE_RIGHT_MOTOR = 2; 
+  
+  public static final int NEO_TEST = 3;
 
 }
