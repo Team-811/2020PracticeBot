@@ -45,14 +45,14 @@ public class Neo extends Subsystem implements ISubsystem{
 
   public void NeoTest(double value)
   {     
-      neo.set(value);
+      neo.set(.7*value);
       SmartDashboard.putNumber("Stick ", value);
   }  
 
   public void stopNeo()
   {
     neo.stopMotor();
-  } 
+  }     
 
   @Override
   public void outputSmartdashboard() 
