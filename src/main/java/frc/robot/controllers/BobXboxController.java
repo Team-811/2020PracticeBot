@@ -59,7 +59,7 @@ public class BobXboxController extends Joystick {
 	}
 
 	static enum XboxAxis {
-		LEFT_X(0), LEFT_Y(1), LEFT_TRIGGER(2), RIGHT_TRIGGER(3), RIGHT_X(4), RIGHT_Y(5), DPAD(6);
+		LEFT_X(1), LEFT_Y(1), LEFT_TRIGGER(2), RIGHT_TRIGGER(3), RIGHT_X(4), RIGHT_Y(5), DPAD(6);
 
 		final int value;
 

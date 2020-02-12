@@ -7,68 +7,58 @@
 
 package frc.robot.subsystems;
 
-import com.revrobotics.CANEncoder;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMax.IdleMode;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import frc.robot.commands.Test.*;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
-import frc.robot.commands.Test.NeoTest;
-
 
 /**
  * This is a subsystem class.  A subsystem interacts with the hardware components on the robot.  
  */
 
-public class Neo extends Subsystem implements ISubsystem{
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+public class Falcon extends Subsystem implements ISubsystem{
 
-  private static Neo instance = new Neo();
-   
+  private static Falcon instance = new Falcon();  
+  
+  private static TalonFX falcon;
 
-  public static Neo getInstance() {
+  public static Falcon getInstance() {
     return instance;
   }
 
-  private CANSparkMax neo; 
-  private CANEncoder encoder;
 
-  public Neo()
+  public Falcon()
   {
-      neo = new CANSparkMax(RobotMap.NEO_TEST, MotorType.kBrushless); 
-      neo.setIdleMode(IdleMode.kBrake);
-      neo.setOpenLoopRampRate(.5);
-      encoder = neo.getEncoder();     
-      zeroSensors();        
+      falcon = new TalonFX(RobotMap.FALCON_TEST);
   }
 
 
-  public void NeoTest(double value)
+  public void FalconTest(double value)
   {     
-      neo.set(value);
-      SmartDashboard.putNumber("Stick ", value);
+      falcon.set(ControlMode.PercentOutput, value);
+      SmartDashboard.putNumber("Speed Value", value);
   }  
 
-  public void stopNeo()
+  public void stopFalcon()
   {
-    neo.stopMotor();
+    falcon.set(ControlMode.PercentOutput,0);
   }     
 
   @Override
   public void outputSmartdashboard() 
   {
-      SmartDashboard.putNumber("Neo Encoder ", encoder.getPosition());
-      SmartDashboard.putNumber("Neo Velocity ", encoder.getVelocity());
-      
+    SmartDashboard.putNumber("Falcon Encoder ", falcon.getSelectedSensorPosition());
+    SmartDashboard.putNumber("Falcon Velocity ", falcon.getSelectedSensorVelocity());     
+   
   }
 
   @Override
   public void zeroSensors() 
   {
-    encoder.setPosition(0);
+    falcon.setSelectedSensorPosition(0);
   }
 
   @Override
@@ -86,6 +76,7 @@ public class Neo extends Subsystem implements ISubsystem{
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-      setDefaultCommand(new NeoTest());
+    setDefaultCommand(new FalconTest());
   }
+
 }

@@ -28,6 +28,7 @@ public class RobotMap {
   public static final int DRIVE_LEFT_MOTOR = 1;
   public static final int DRIVE_RIGHT_MOTOR = 2; 
   
-  public static final int NEO_TEST = 3;
+  public static final int NEO_TEST = 9;
+  public static final int FALCON_TEST = 10;
 
 }

@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.controllers.OI;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Falcon;
 import frc.robot.subsystems.Neo;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -27,6 +28,7 @@ public class Robot extends TimedRobot {
   public static Neo neo = Neo.getInstance();
   public static RobotMap robotMap = new RobotMap();  
   public static OI controllers; 
+  public static Falcon falcon = Falcon.getInstance();
 
 
 
@@ -146,6 +148,7 @@ public class Robot extends TimedRobot {
   {
       drivetrain.outputSmartdashboard();
       neo.outputSmartdashboard();
+      falcon.outputSmartdashboard();
   }
 
 }
