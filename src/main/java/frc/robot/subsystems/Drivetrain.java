@@ -85,9 +85,22 @@ public class Drivetrain extends Subsystem implements ISubsystem{
 
       leftMotor.set(ControlMode.PercentOutput, driveOutput.getLeftValue() * Constants.LEFT_COEFFICIENT);
       rightMotor.set(ControlMode.PercentOutput, driveOutput.getRightValue() * Constants.RIGHT_COEFFICENT);     
-      
+       
       prevAngle = getGyroAngle(); //Stores previous angle
 
+  }
+
+  
+
+  public void driveFeet(double feet)
+  {
+    double lengthDriven = getForwardDistance();
+    while(lengthDriven<feet)
+    {
+      DriveWithJoy(.5, 0);
+      lengthDriven = getForwardDistance();
+    }
+    stopDrivetrain();
   }
 
   public void slowMode(boolean isSlow)
@@ -126,6 +139,11 @@ public class Drivetrain extends Subsystem implements ISubsystem{
   public double getRightEncoder()
   {
     return UnitConverter.ticksToMeters(rightMotor.getSelectedSensorPosition(), 1373, Constants.wheelDiameter);
+  }
+
+  public double getForwardDistance()
+  {
+    return (getLeftEncoder()+getRightEncoder())/2;
   }
 
   public void zeroEncoders()

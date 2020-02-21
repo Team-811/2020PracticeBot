@@ -47,7 +47,8 @@ dependencies {
     nativeZip wpi.deps.wpilibJni(wpi.platforms.roborio)
     nativeDesktopZip wpi.deps.wpilibJni(wpi.platforms.desktop)
 
-
+    implementation 'pw.otake.pseudoresonance:pixy2-java-api:1.3.5'
+    
     implementation wpi.deps.vendor.java()
     nativeZip wpi.deps.vendor.jni(wpi.platforms.roborio)
     nativeDesktopZip wpi.deps.vendor.jni(wpi.platforms.desktop)
@@ -57,6 +58,11 @@ dependencies {
     // Enable simulation gui support. Must check the box in vscode to enable support
     // upon debugging
     simulation wpi.deps.sim.gui(wpi.platforms.desktop, false)
+}
+
+repositories
+{
+    maven { url 'https://nexus.otake.pw/repository/maven-public/' }
 }
 
 // Setting up my Jar File. In this case, adding all libraries into the main jar ('fat jar')

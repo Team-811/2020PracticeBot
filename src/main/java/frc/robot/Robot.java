@@ -14,6 +14,7 @@ import frc.robot.controllers.OI;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Falcon;
 import frc.robot.subsystems.Neo;
+import frc.robot.subsystems.VisionTest;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -46,6 +47,7 @@ public class Robot extends TimedRobot {
     CameraServer.getInstance().startAutomaticCapture();
 
     updateSmartdashboard();
+    VisionTest.initialize();
 
     //SmartDashboard CameraServer
 
@@ -135,6 +137,8 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
     updateSmartdashboard();
+    
+       
   }
 
   /**
@@ -149,6 +153,7 @@ public class Robot extends TimedRobot {
       drivetrain.outputSmartdashboard();
       neo.outputSmartdashboard();
       falcon.outputSmartdashboard();
+      
   }
 
 }
