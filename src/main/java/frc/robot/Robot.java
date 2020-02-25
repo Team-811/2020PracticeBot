@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.controllers.OI;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Falcon;
+import frc.robot.subsystems.LED;
 import frc.robot.subsystems.Neo;
 import frc.robot.subsystems.VisionTest;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -30,6 +31,7 @@ public class Robot extends TimedRobot {
   public static RobotMap robotMap = new RobotMap();  
   public static OI controllers; 
   public static Falcon falcon = Falcon.getInstance();
+  public static LED led = LED.getInstance();
 
 
 
@@ -48,6 +50,8 @@ public class Robot extends TimedRobot {
 
     updateSmartdashboard();
     VisionTest.initialize();
+
+    led.setRainbowGradient();
 
     //SmartDashboard CameraServer
 
@@ -153,6 +157,7 @@ public class Robot extends TimedRobot {
       drivetrain.outputSmartdashboard();
       neo.outputSmartdashboard();
       falcon.outputSmartdashboard();
+      led.outputSmartdashboard();
       
   }
 
