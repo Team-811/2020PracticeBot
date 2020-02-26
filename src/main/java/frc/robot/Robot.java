@@ -11,6 +11,7 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.controllers.OI;
+import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Falcon;
 import frc.robot.subsystems.LED;
@@ -32,6 +33,7 @@ public class Robot extends TimedRobot {
   public static OI controllers; 
   public static Falcon falcon = Falcon.getInstance();
   public static LED led = LED.getInstance();
+  public static ColorWheel colorWheel = ColorWheel.getInstance();
 
 
 
@@ -158,6 +160,7 @@ public class Robot extends TimedRobot {
       neo.outputSmartdashboard();
       falcon.outputSmartdashboard();
       led.outputSmartdashboard();
+      colorWheel.outputSmartdashboard();
       
   }
 
